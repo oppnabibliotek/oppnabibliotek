@@ -2,8 +2,8 @@
 	ServerName www.openlibrary.se
 	RailsEnv development
 	SSLEngine on
-	DocumentRoot /var/rails/openlibrary/public
-	<Directory /var/rails/openlibrary/public>
+	DocumentRoot /var/rails/oppnabibliotek/public
+	<Directory /var/rails/oppnabibliotek/public>
 		AllowOverride all
 		Options -MultiViews
 	</Directory>
