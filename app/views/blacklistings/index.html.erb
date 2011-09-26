@@ -1,0 +1,26 @@
+<h1>Listing blacklistings</h1>
+
+<table>
+  <tr>
+    <th>Tag</th>
+    <th>Assessment</th>
+    <th>Library</th>
+    <th>Global</th>
+  </tr>
+
+<% for blacklisting in @blacklistings %>
+  <tr>
+    <td><%= blacklisting.tag_id %></td>
+    <td><%= blacklisting.assessment_id %></td>
+    <td><%= blacklisting.library_id %></td>
+    <td><%= blacklisting.global %></td>
+    <td><%= link_to 'Show', blacklisting %></td>
+    <td><%= link_to 'Edit', edit_blacklisting_path(blacklisting) %></td>
+    <td><%= link_to 'Destroy', blacklisting, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New blacklisting', new_blacklisting_path %>

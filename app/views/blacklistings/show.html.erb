@@ -1,0 +1,23 @@
+<p>
+  <b>Tag:</b>
+  <%= @blacklisting.tag_id %>
+</p>
+
+<p>
+  <b>Assessment:</b>
+  <%= @blacklisting.assessment_id %>
+</p>
+
+<p>
+  <b>Library:</b>
+  <%= @blacklisting.library_id %>
+</p>
+
+<p>
+  <b>Global:</b>
+  <%= @blacklisting.global %>
+</p>
+
+
+<%= link_to 'Edit', edit_blacklisting_path(@blacklisting) %> |
+<%= link_to 'Back', blacklistings_path %>

@@ -1,0 +1,33 @@
+<% if flash[:error] %>
+  <div class="errors">
+    <%= flash[:error] %>
+  </div>
+<% elsif flash[:notice] %>
+  <div class="errors">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<%= form_tag session_path do -%>
+<fieldset>
+    <p>
+        <label for="login" class="required">
+            Login
+        </label>
+        <%= text_field_tag :login, params[:login] %>
+    </p>
+    <p>
+        <label for="password" class="required">
+            Password
+        </label>
+        <%= password_field_tag :password, params[:password] %>
+    </p>
+    <p>
+        <%= submit_tag 'Log in' %>
+    </p>
+</fieldset>
+<% end -%>
+
+<%= link_to 'Books', books_path %>
+<%= link_to 'Editions', editions_path %>
+<%= link_to 'Descriptions', descriptions_path %>

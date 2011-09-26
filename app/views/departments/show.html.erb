@@ -1,0 +1,10 @@
+<p>
+    <b>Department:</b>
+    <%= @department.name %>
+</p>
+<p>
+    <b>Library:</b>
+    <%= @department.library.name %>
+</p>
+<%= link_to 'Edit', edit_department_path(@department) %> |
+<%= link_to 'Back', departments_path %>

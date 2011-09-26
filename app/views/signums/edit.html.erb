@@ -1,0 +1,17 @@
+<h1>Editing signum</h1>
+
+<%= error_messages_for :signum %>
+
+<%= form_for(@signum) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @signum %> |
+<%= link_to 'Back', signums_path %>

@@ -1,0 +1,26 @@
+<h2>Bibliotek</h2>
+<dl>
+    <dt>Namn:</dt>
+    <dd><%= @library.name %></dd>
+
+    <dt>Kommun:</dt>
+    <dd><%= @library.county.name %></dd>
+
+    <dt>Användares infolänk:</dt>
+    <dd><%= @library.userinfolink %></dd>
+
+    <dt>Bibliotekets infolänk:</dt>
+    <dd><%= @library.infolink %></dd>
+
+    <dt>Bibliotekets bok-infolänk:</dt>
+    <dd><%= @library.bookinfolink %></dd>
+
+    <dt>Missbruksanmälan:</dt>
+    <dd><%= @library.abuse_email %></dd>
+	
+	<dt>Utvecklarnyckel:</dt>
+    <dd><%= @library.dev_key %></dd>
+	
+</dl>
+<%= link_to 'Ändra', edit_library_path(@library), :class => 'button' %>
+<%= link_to 'Tillbaka', {:controller => :libraries, :action => :librarysearch}, :class => 'border back' %>

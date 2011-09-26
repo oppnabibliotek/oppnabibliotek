@@ -1,0 +1,47 @@
+<h1>Editing assessment</h1>
+
+<%= error_messages_for :assessment %>
+
+<%= form_for(@assessment) do |f| %>
+  <p>
+    <b>Grade</b><br />
+    <%= f.text_field :grade %>
+  </p>
+
+  <p>
+    <b>Published</b><br />
+    <%= f.check_box :published %>
+  </p>
+
+  <p>
+    <b>User</b><br />
+    <%= f.text_field :user_id %>
+  </p>
+
+  <p>
+    <b>Book</b><br />
+    <%= f.text_field :book_id %>
+  </p>
+
+  <p>
+    <b>Edition</b><br />
+    <%= f.text_field :edition_id %>
+  </p>
+
+  <p>
+    <b>Comment header</b><br />
+    <%= f.text_area :comment_header %>
+  </p>
+
+  <p>
+    <b>Comment text</b><br />
+    <%= f.text_area :comment_text %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @assessment %> |
+<%= link_to 'Back', assessments_path %>

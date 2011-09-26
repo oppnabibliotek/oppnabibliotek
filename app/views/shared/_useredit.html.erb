@@ -1,0 +1,52 @@
+<%= error_messages_for :user, :header_message => 'Användaren kunde inte sparas.', :message => 'Följande fel behöver korrigeras:' %>
+<%= form_for(@user) do |f| %>
+<div class="form-double-column">
+    <div class="left">
+        <label for="user_username">
+            Användarnamn:
+        </label>
+        <%= f.text_field :username %>
+    </div>
+    <div class="right">
+        <label for="user_password">
+            Lösenord:
+        </label>
+        <%= f.password_field :password %>
+    </div>
+</div>
+<div class="form-double-column">
+    <div class="left">
+        <label for="user_firstname">
+            Förnamn:
+        </label>
+        <%= f.text_field :firstname %>
+    </div>
+    <div class="right">
+        <label for="user_lastname">
+            Efternamn:
+        </label>
+        <%= f.text_field :lastname %>
+    </div>
+</div>
+<label for="user_email">
+    E-post:
+</label>
+<%= f.text_field :email %>
+<label for="user_dynamicinfolink">
+    Dymanisk infolänk:
+</label>
+<%= f.text_field :dynamicinfolink %>
+<label for="user_library_id">
+    Bibliotek:
+</label>
+<%= f.collection_select(:library_id, possible_libraries, :id, :name,:prompt => "Välj Bibliotek") %>
+
+<label for="user_role_ids">
+    Roller:
+</label>
+<%= collection_select('user', 'role_ids', possible_roles, :id, :name, {}, :multiple => true) %>
+<div id="form-buttons">
+    <%= f.submit action, :value => 'Spara ändringar' %>
+</div>
+<% end %>
+<%= link_to 'Tillbaka', :controller => :users, :action => :usersearch %>

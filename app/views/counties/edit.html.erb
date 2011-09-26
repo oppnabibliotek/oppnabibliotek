@@ -1,0 +1,16 @@
+<h1>Editing county</h1>
+
+<%= error_messages_for :county %>
+
+<%= form_for(@county) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @county %> |
+<%= link_to 'Back', counties_path %>

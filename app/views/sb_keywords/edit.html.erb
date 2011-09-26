@@ -1,0 +1,17 @@
+<h1>Editing sb_keyword</h1>
+
+<%= error_messages_for :sb_keyword %>
+
+<%= form_for(@sb_keyword) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @sb_keyword %> |
+<%= link_to 'Back', sb_keywords_path %>

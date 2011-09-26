@@ -1,0 +1,20 @@
+<h1>Listing descriptions</h1>
+
+<table>
+  <tr>
+    <th>Descriptiontext</th>
+  </tr>
+
+<% for description in @descriptions %>
+  <tr>
+    <td><%= description.text %></td>
+    <td><%= link_to 'Show', description %></td>
+    <td><%= link_to 'Edit', edit_description_path(description) %></td>
+    <td><%= link_to 'Destroy', description, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New description', new_description_path %>

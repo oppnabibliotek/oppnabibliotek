@@ -1,0 +1,15 @@
+#
+# https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/sv-SE.yml
+#
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+
+"sv-SE":
+  views:
+    pagination:
+      previous: "&laquo; Föregående"
+      next: "Nästa &raquo;"
+      last: "Sista"
+      first: "Första"
+      truncate: "..."
+

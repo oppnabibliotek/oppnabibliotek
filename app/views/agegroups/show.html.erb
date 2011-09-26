@@ -1,0 +1,20 @@
+<p>
+  <b>Name:</b>
+  <%= @agegroup.name %>
+  </p>
+<p>
+  <b>Age from:</b>
+  <%= @agegroup.from %>
+  </p>
+<p>
+  <b>Age To:</b>
+  <%= @agegroup.to %>
+  </p>
+<p>
+  <b>Target group:</b>
+  <%= @agegroup.targetgroup.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_agegroup_path(@agegroup) %> |
+<%= link_to 'Back', agegroups_path %>

@@ -1,0 +1,36 @@
+<h1>Listing editions</h1>
+
+<table>
+  <tr>
+    <th>Isbn</th>
+    <th>Year</th>
+	<th>Illustrator</th>
+	<th>Translator</th>
+	<th>Record Nr</th>
+	<th>Record Company</th>
+	<th>Aux Creator</th>
+	<th>SSB_KEY</th>
+	
+  </tr>
+
+<% for edition in @editions %>
+  <tr>
+    <td><%= edition.isbn %></td>
+    <td><%= edition.year %></td> 
+	<td><%= edition.illustrator %></td>
+	<td><%= edition.translator %></td>
+	<td><%= edition.recordnr %></td>
+	<td><%= edition.recordcompany %></td>
+	<td><%= edition.auxcreator %></td>
+	<td><%= edition.ssb_key %></td>
+	
+    <td><%= link_to 'Show', edition %></td>
+    <td><%= link_to 'Edit', edit_edition_path(edition) %></td>
+    <td><%= link_to 'Destroy', edition, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New edition', new_edition_path %>

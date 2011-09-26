@@ -1,0 +1,18 @@
+<h1>Editing targetgroup</h1>
+
+<%= error_messages_for :targetgroup %>
+
+<%= form_for(@targetgroup) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+  
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @targetgroup %> |
+<%= link_to 'Back', targetgroups_path %>

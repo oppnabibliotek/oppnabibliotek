@@ -1,0 +1,21 @@
+<h1>New description</h1>
+
+<%= error_messages_for :description %>
+
+<%= form_for(@description) do |f| %>
+<%= f.hidden_field :edition_id %>
+
+  <p>
+    <b>Descriptiontext</b><br />
+    <%= f.text_area :text %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', descriptions_path %>
+<%= link_to 'Back to books', books_path %>
+<%= link_to 'Back to editions', editions_path %>
+

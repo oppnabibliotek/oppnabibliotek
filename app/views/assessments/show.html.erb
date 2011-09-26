@@ -1,0 +1,38 @@
+<p>
+  <b>Grade:</b>
+  <%= @assessment.grade %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%= @assessment.published %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @assessment.user_id %>
+</p>
+
+<p>
+  <b>Book:</b>
+  <%= @assessment.book_id %>
+</p>
+
+<p>
+  <b>Edition:</b>
+  <%= @assessment.edition_id %>
+</p>
+
+<p>
+  <b>Comment header:</b>
+  <%= @assessment.comment_header %>
+</p>
+
+<p>
+  <b>Comment text:</b>
+  <%= @assessment.comment_text %>
+</p>
+
+
+<%= link_to 'Edit', edit_assessment_path(@assessment) %> |
+<%= link_to 'Back', assessments_path %>

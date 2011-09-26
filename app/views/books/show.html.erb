@@ -1,0 +1,54 @@
+<p>
+    <b>Booktitle:</b>
+    <%= @book.title %>
+</p>
+<p>
+    <b>Authorfirstname:</b>
+    <%= @book.authorfirstname %>
+</p>
+<p>
+    <b>Authorlastname:</b>
+    <%= @book.authorlastname %>
+</p>
+<p>
+    <b>Signum:</b>
+    <%= @book.signum.name if @book.signum %>
+</p>
+<p>
+    <b>Target group:</b>
+    <%= @book.targetgroup.name if @book.targetgroup %>
+</p>
+<p>
+    <b>Age Group:</b>
+    <%=  @book.agegroup.name if @book.agegroup %>
+</p>
+<p>
+    <b>reserved:</b>
+    <%=  @book.reserved%>
+</p>
+<p>
+    <b>Editions:</b>
+    <br/>
+    <% for edition in @book.editions %>
+    <b>ISBN: </b>
+    <%= edition.isbn %><b>Year: </b>
+    <%= edition.year %>
+    <%= link_to 'Show', edition %>
+    <%end %>
+</p>
+<p>
+    <b>Keywords:</b>
+    <br/>
+	<!-- %@book.keywords% -->
+    <% for keyword in @book.keywords%>
+	<%= keyword.name %>
+    <%= link_to 'Show', keyword %>-->
+    <br/>
+    <%end %>
+</p>
+
+<p>
+	<b>Reserved</b>
+	 <%=  @book.reserved%>
+</p>
+<%= link_to 'Edit', edit_book_path(@book) %> |<%= link_to 'Back', books_path %> |<%= link_to "New edition" , { :controller => "editions", :action => "new" , :book_id => @book} %>

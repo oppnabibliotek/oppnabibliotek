@@ -1,0 +1,24 @@
+<h1>Editing department</h1>
+
+<%= error_messages_for :department %>
+
+
+
+<%= form_for(@department) do |f| %>
+<p>
+    <b>Name</b>
+    <br/>
+    <%= f.text_field :name %>
+</p>
+<p>
+    <b>Bibliotek:</b>
+    <%=@libraries = Library.order("name")
+    f.collection_select(:library_id, @libraries, :id, :name,:prompt => "Select Library") %>
+</p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @department %> |
+<%= link_to 'Back', departments_path %>

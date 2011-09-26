@@ -1,0 +1,44 @@
+<h1>Editing book</h1>
+<%= error_messages_for :book %>
+<%= form_for(@book) do |f| %>
+<p>
+    <b>Booktitle</b>
+    <br/>
+    <%= f.text_field :title %>
+</p>
+<p>
+    <b>Authorfirstname</b>
+    <br/>
+    <%= f.text_field :authorfirstname %>
+</p>
+<p>
+    <b>Authorlastname</b>
+    <br/>
+    <%= f.text_field :authorlastname %>
+</p>
+<p>
+    <b>Signum:</b>
+    <%=@signums = Signum.order(:name)
+    f.collection_select(:signum_id, @signums, :id, :name, :prompt => "Select Signum") %>
+</p>
+<p>
+    <b>Target Group:</b>
+    <%=@targetgroups = Targetgroup.order(:name)
+    f.collection_select(:targetgroup_id, @targetgroups, :id, :name,:prompt => "Select Target Group") %>
+</p>
+<!--TODO-->
+<!--Age Group should only be displayed if the user choose a target group that has agegroups connnected...-->
+<p>
+    <b>Age Group:</b>
+    <%=@agegroups = Agegroup.order('agegroups.from')
+    f.collection_select(:agegroup_id, @agegroups, :id, :name,:prompt => "Select Age Group") %>
+</p>
+<p>
+	<b>Reserved</b>
+	<%=f.check_box :reserved%>
+</p>
+<p>
+    <%= f.submit "Update" %>
+</p>
+<% end %>
+<%= link_to 'Show', @book %> |<%= link_to 'Back', books_path %>

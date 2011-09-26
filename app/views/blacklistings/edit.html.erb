@@ -1,0 +1,32 @@
+<h1>Editing blacklisting</h1>
+
+<%= error_messages_for :blacklisting %>
+
+<%= form_for(@blacklisting) do |f| %>
+  <p>
+    <b>Tag</b><br />
+    <%= f.text_field :tag_id %>
+  </p>
+
+  <p>
+    <b>Assessment</b><br />
+    <%= f.text_field :assessment_id %>
+  </p>
+
+  <p>
+    <b>Library</b><br />
+    <%= f.text_field :library_id %>
+  </p>
+
+  <p>
+    <b>Global</b><br />
+    <%= f.check_box :global %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @blacklisting %> |
+<%= link_to 'Back', blacklistings_path %>

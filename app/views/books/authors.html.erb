@@ -1,0 +1,21 @@
+<h1>Listing authors</h1>
+
+<table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+
+<% for author in @authors %>
+  <tr>
+    <td><%= author[0] %></td>
+    <td><%= author[1] %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back', books_path %>
+<%= link_to 'Login' , new_session_path %>
+<%= link_to 'Logout' , session_path, :method => :delete %>

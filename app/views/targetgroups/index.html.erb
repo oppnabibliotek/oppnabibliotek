@@ -1,0 +1,20 @@
+<h1>Listing targetgroups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for targetgroup in @targetgroups %>
+  <tr>
+    <td><%= targetgroup.name %></td>
+    <td><%= link_to 'Show', targetgroup %></td>
+    <td><%= link_to 'Edit', edit_targetgroup_path(targetgroup) %></td>
+    <td><%= link_to 'Destroy', targetgroup, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New targetgroup', new_targetgroup_path %>

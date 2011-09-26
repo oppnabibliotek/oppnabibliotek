@@ -1,0 +1,28 @@
+<h1>New agegroup</h1>
+
+<%= error_messages_for :agegroup %>
+
+<%= form_for(@agegroup) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+   <p>
+    <b>Age from</b><br />
+    <%= f.text_field :from %>
+  </p>
+   <p>
+    <b>Age to</b><br />
+    <%= f.text_field :to %>
+  </p>
+<p>
+    <b>Target Group:</b>
+    <%=@targetgroups = Targetgroup.order("name")
+    f.collection_select(:targetgroup_id, @targetgroups, :id, :name,:prompt => "Select Target Group") %>
+</p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', agegroups_path %>

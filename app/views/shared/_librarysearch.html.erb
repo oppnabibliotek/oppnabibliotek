@@ -1,0 +1,55 @@
+<table cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+            <th>
+                Namn
+            </th>
+            <th>
+                Län
+            </th>
+            <th>
+                Missbruksanmälan
+            </th>
+            <th>
+                &nbsp;
+            </th>
+            <th>
+                &nbsp;
+            </th>
+            <th>
+                &nbsp;
+            </th>
+        </tr>
+        <% i = 0
+        for library in @libraries
+        if i.remainder(2) == 0 %>
+        <tr class="even">
+        <% else %>
+        <tr>
+            <% end
+            i = i +1 %>
+            <td>
+                <%= library.name %>
+            </td>
+            <td>
+                <%= library.county.name if library.county %>
+            </td>
+            <td>
+                <%= library.abuse_email %>
+            </td>
+            <td>
+                <%= link_to 'Visa', library %>
+            </td>
+            <td>
+                <%= link_to 'Ändra', edit_library_path(library) %>
+            </td>
+            <td>
+                <%= link_to 'Ta bort', library, :confirm => 'Är du säker?', :method => :delete %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<%= paginate @libraries %>
+
+<%= link_to 'Nytt bibliotek', new_library_path, :class => 'button' %>

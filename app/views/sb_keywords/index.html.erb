@@ -1,0 +1,20 @@
+<h1>Listing sb_keywords</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for sb_keyword in @sb_keywords %>
+  <tr>
+    <td><%= sb_keyword.name %></td>
+    <td><%= link_to 'Show', sb_keyword %></td>
+    <td><%= link_to 'Edit', edit_sb_keyword_path(sb_keyword) %></td>
+    <td><%= link_to 'Destroy', sb_keyword, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New sb_keyword', new_sb_keyword_path %>

@@ -1,0 +1,34 @@
+<h1>Listing books</h1>
+
+<table>
+  <tr>
+    <th>Booktitle</th>
+    <th>Authorfirstname</th>
+    <th>Authorlastname</th>
+	<th>Signum</th>
+	<th>Target Group</th>
+	<th>Age Group</th>
+	<th>Reserved</th>
+  </tr>
+
+<% for book in @books %>
+  <tr>
+    <td><%= book.title %></td>
+    <td><%= book.authorfirstname %></td>
+    <td><%= book.authorlastname %></td>
+	<td><%= book.signum.name if book.signum %></td>
+	<td><%= book.targetgroup.name if book.targetgroup %></td>
+	<td><%= book.agegroup.name if book.agegroup %></td>
+	<td><%= book.reserved %></td>
+    <td><%= link_to 'Show', book %></td>
+    <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New book', new_book_path %>
+<%= link_to 'Login' , new_session_path %>
+<%= link_to 'Logout' , session_path, :method => :delete %>

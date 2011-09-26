@@ -1,0 +1,62 @@
+<h2>Användare</h2>
+<dl>
+    <dt>
+        Användarnamn:
+    </dt>
+    <dd>
+        <%= @user.username %>
+    </dd>
+    <dt>
+        Förnamm:
+    </dt>
+    <dd>
+        <%= @user.firstname %>
+    </dd>
+    <dt>
+        Efternamn:
+    </dt>
+    <dd>
+        <%= @user.lastname %>
+    </dd>
+    <dt>
+        Email:
+    </dt>
+    <dd>
+        <%= @user.email %>
+    </dd>
+    <dt>
+        Dynamisk infolänk:
+    </dt>
+    <dd>
+        <%= @user.dynamicinfolink %>
+    </dd>
+    <dt>
+        Bibliotek:
+    </dt>
+    <dd>
+        <%= @user.library.name if @user.library %>
+    </dd>
+    <!-- <p>
+    <b>Avdelningar:</b><br/>
+    <%if @user.departments.size > 0 %>
+    <% for department in @user.departments %>
+    <%= department.name %>
+    <br/>
+    <%end %>
+    <%end %>
+    </p> -->
+    <dt>
+        Roller:
+    </dt>
+    <br/>
+    <dd>
+        <%if @user.roles.size > 0 %>
+        <% for role in @user.roles %>
+        <%= role.name %>
+        <br/>
+        <%end %>
+        <%end %>
+    </dd>
+</dl>
+<%= link_to 'Ändra', edit_user_path(@user), :class => 'button' %>
+<%= link_to 'Tillbaka', {:controller => :users, :action => :usersearch}, :class => 'border back' %>

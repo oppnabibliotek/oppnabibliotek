@@ -1,0 +1,53 @@
+<p>
+    <b>Isbn:</b>
+    <%= @edition.isbn if @edition.isbn %>
+</p>
+<p>
+    <b>Year:</b>
+    <%= @edition.year if @edition.year %>
+</p>
+<p>
+    <b>Illustator:</b>
+    <%= @edition.illustrator if @edition.illustrator%>
+</p>
+<p>
+    <b>Translator:</b>
+    <%= @edition.translator if @edition.translator %>
+</p>
+<p>
+    <b>Record Nr:</b>
+    <%= @edition.recordnr if @edition.recordnr %>
+</p>
+<p>
+    <b>Record Company:</b>
+    <%= @edition.recordcompany if @edition.recordcompany %>
+</p>
+<p>
+    <b>Aux:</b>
+    <%= @edition.auxcreator if @edition.auxcreator%>
+</p>
+<p>
+    <b>SSB_KEY</b>
+    <%= @edition.ssb_key if @edition.ssb_key %>
+</p>
+ <p>
+    <%= image_tag("#{@edition.image.public_filename}" , :class => "bevel" , :size => "80x120" ) if @edition.image %>
+</p>
+<p>
+    <b>Descriptions:</b>
+    <br/>
+    <%if @edition.descriptions.size > 0 %>
+	    <% for description in @edition.descriptions %>
+	    <b>Writer: </b>
+	    <%= description.user.username if description.user %>
+	    <br/>
+	    <b>Text: </b>
+	    <%= description.text if description.text%>
+	    <%= link_to 'Show', description %>
+	    <br/>
+	    <br/>
+	    <%end %>
+	<%end%>
+</p>
+<%= link_to 'Edit', edit_edition_path(@edition) %> |<%= link_to 'Back', editions_path %> |<%= link_to 'Back to books', books_path %>
+<%= link_to "New description" , { :controller => "descriptions", :action => "new" , :edition_id => @edition} %>

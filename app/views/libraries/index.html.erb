@@ -1,0 +1,22 @@
+<h2>Bibliotek</h2>
+
+<%= form_tag('javascript:void(0)', :class => 'search-form') do %>
+<label for="search">Sök:</label>
+<div class="searchfield">
+    <%= text_field_tag 'search', @search %>
+    <br>
+    <%= image_tag 'loading.gif', :id=>'spinner', :style=>"display:none" %>
+</div>
+
+<%= observe_field :search,
+                    :frequency => 0.5,
+                    :update    => 'ajaxWrapper',
+                    :before    => "Element.show('spinner')",
+                    :complete  => "Element.hide('spinner')",
+                    :url       => { :action => 'librarysearch', :only_path => false },
+                    :with      => "'librarysearch=' + encodeURIComponent(value)" %>
+<% end %>
+
+<div id='ajaxWrapper'>
+    <%= render :partial=>'shared/librarysearch' %>  
+</div>

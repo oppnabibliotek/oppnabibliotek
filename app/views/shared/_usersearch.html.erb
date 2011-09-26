@@ -1,0 +1,66 @@
+<table cellspacing="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <th>
+                Användarnamn
+            </th>
+            <th>
+                Förnamn
+            </th>
+            <th>
+                Efternamn
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Bibliotek
+            </th>
+            <th>
+                &nbsp;
+            </th>
+            <th>
+                &nbsp;
+            </th>
+            <th>
+                &nbsp;
+            </th>
+        </tr>
+        <% i = 0
+        for user in @users
+        if i.remainder(2) == 0 %>
+        <tr class="even">
+        <% else %>
+        <tr>
+            <% end
+            i = i + 1 %>
+            <td>
+                <%= user.username %>
+            </td>
+            <td>
+                <%= user.firstname %>
+            </td>
+            <td>
+                <%= user.lastname %>
+            </td>
+            <td>
+                <%= user.email %>
+            </td>
+            <td>
+                <%= user.library.name if user.library %>
+            </td>
+            <td>
+                <%= link_to 'Visa', user %>
+            </td>
+            <td>
+                <%= link_to 'Ändra', edit_user_path(user) %>
+            </td>
+            <td>
+                <%= link_to 'Ta bort', user, :confirm => 'Är du säker?', :method => :delete %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<%= paginate @users %>
+<%= link_to 'Ny användare', new_user_path, :class => 'button' %>

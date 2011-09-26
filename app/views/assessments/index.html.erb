@@ -1,0 +1,32 @@
+<h1>Listing assessments</h1>
+
+<table>
+  <tr>
+    <th>Grade</th>
+    <th>Published</th>
+    <th>User</th>
+    <th>Book</th>
+    <th>Edition</th>
+    <th>Comment header</th>
+    <th>Comment text</th>
+  </tr>
+
+<% for assessment in @assessments %>
+  <tr>
+    <td><%= assessment.grade %></td>
+    <td><%= assessment.published %></td>
+    <td><%= assessment.user_id %></td>
+    <td><%= assessment.book_id %></td>
+    <td><%= assessment.edition_id %></td>
+    <td><%= assessment.comment_header %></td>
+    <td><%= assessment.comment_text %></td>
+    <td><%= link_to 'Show', assessment %></td>
+    <td><%= link_to 'Edit', edit_assessment_path(assessment) %></td>
+    <td><%= link_to 'Destroy', assessment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New assessment', new_assessment_path %>

@@ -1,0 +1,67 @@
+<h1>New edition</h1>
+<%= error_messages_for :edition %>
+<%= form_for(@edition, :html => { :multipart => true }) do |f| %>
+<%= f.hidden_field :book_id %>
+
+<p>
+    <b>Isbn</b>
+    <br/>
+    <%= f.text_field :isbn %>
+</p>
+
+<p>
+    <b>Year</b>
+    <br/>
+    <%= f.text_field :year %>
+</p>
+
+<p>
+    <b>Illustrator</b>
+    <br/>
+    <%= f.text_field :illustrator %>
+</p>
+
+<p>
+    <b>Translator</b>
+    <br/>
+    <%= f.text_field :translator %>
+</p>
+
+<p>
+    <b>Record Nr</b>
+    <br/>
+    <%= f.text_field :recordnr %>
+</p>
+
+<p>
+    <b>Record Company</b>
+    <br/>
+    <%= f.text_field :recordcompany %>
+</p>
+
+<p>
+    <b>Auxiliary creator</b>
+    <br/>
+    <%= f.text_field :auxcreator %>
+</p>
+<p>
+    <b>SSB_KEY</b>
+    <br/>
+    <%= f.text_field :ssb_key %>
+</p>
+
+<p>
+    <%= label :edition, :image %>
+    <%= f.file_field :uploaded_image_data %>
+    <span class="hint">We accept JPEG, GIF, or PNG files up to 1 MB.</span>
+</p>
+
+<p>
+    <%= f.submit "Submit" %>
+</p>
+
+<% end %>
+
+<%= link_to 'Back', editions_path %>
+<%= link_to 'Back to books', books_path %>
+

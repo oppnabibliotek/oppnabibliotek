@@ -1,0 +1,23 @@
+<h1>Listing agegroups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for agegroup in @agegroups %>
+  <tr>
+    <td><%= agegroup.name %></td>
+	<td><%= agegroup.from %></td>
+	<td><%= agegroup.to %></td>
+	<td><%= agegroup.targetgroup.name %></td>
+    <td><%= link_to 'Show', agegroup %></td>
+    <td><%= link_to 'Edit', edit_agegroup_path(agegroup) %></td>
+    <td><%= link_to 'Destroy', agegroup, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New agegroup', new_agegroup_path %>
