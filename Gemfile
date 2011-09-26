@@ -25,7 +25,7 @@ gem "paperclip"
 
 # Added tools only for development
 group :development do
-  gem 'annotate-models'
+  gem 'annotate'
   gem 'magic_encoding'
 end
 

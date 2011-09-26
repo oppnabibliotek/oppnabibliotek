@@ -42,7 +42,7 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
-    annotate-models (1.0.4)
+    annotate (2.4.0)
     arel (2.0.10)
     bartt-ssl_requirement (1.2.7)
     builder (2.1.2)
@@ -97,7 +97,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_ferret (= 0.5.2)!
-  annotate-models
+  annotate
   bartt-ssl_requirement
   kaminari
   magic_encoding
