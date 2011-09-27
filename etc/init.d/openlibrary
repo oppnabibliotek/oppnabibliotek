@@ -1,6 +1,0 @@
-#!/bin/sh -e
-
-cd /var/rails/oppnabibliotek
-ruby script/ferret_server start -e production -R /var/rails/oppnabibliotek
-
-sleep 1
