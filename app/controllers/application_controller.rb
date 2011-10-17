@@ -150,6 +150,9 @@ class ApplicationController < ActionController::Base
     params[:limit] ||= @@default_limit
     params[:offset] ||= @@default_offset
     
+	# bug-fix that prevents the errors like Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''2'' at line 1: SELECT  `assessments`.* FROM `assessments` LIMIT 20 OFFSET '2'
+	params[:offset] = params[:offset].to_i
+
     params.delete(:limit) if params[:limit].eql?("0") # 0 means "no limit"
     
     if params[:order] && !params[:order].eql?("byuse")
