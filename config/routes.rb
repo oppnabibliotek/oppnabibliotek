@@ -4,6 +4,7 @@ Openlibrary::Application.routes.draw do
     collection do
       post :reportabuse
       post :notifyabuser
+      get :count
     end
   end
 
@@ -32,7 +33,6 @@ Openlibrary::Application.routes.draw do
       get :count
     end
   end
-
 
   resources :counties do
     resources :libraries

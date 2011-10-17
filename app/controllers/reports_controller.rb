@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
   skip_before_filter :check_authentication, :check_authorization, :only => [ :index, :show ]
   
   ssl_required :new, :create, :edit, :update, :destroy, :reportabuse, :notifyabuser
-  ssl_allowed :index, :show
+  ssl_allowed :index, :show, :count
   
   @@open_library_abuse_report_email = "missbruk@oppnabibliotek.se"
   
@@ -35,12 +35,41 @@ class ReportsController < ApplicationController
   # GET /reports.xml
   def index
     
+    # TODO: please implement library_id filter for incoming and outgoing reports here
+    
     set_sort_params(params)
     @reports = Report.where(params[:report]).order(params[:order]).limit(params[:limit]).offset(params[:offset]).all
     
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @reports }
+    end
+  end
+  
+  def count
+
+    params[:report] = {} if !params[:report]
+    
+    # TODO: please implement library_id filter for incoming and outgoing reports here
+    
+	# local admins should be able to get stats for their library only without necesarily knowing their library_id
+	#if (params[:report][:library_id] == 'own' && @current_user.library.id)
+	#  params[:report][:library_id] = @current_user.library.id
+	#end
+
+    sql_where_total = get_sql_where_statements(params[:report], "r")
+
+    if sql_where_total != ""
+      sql_where_total = "WHERE" + sql_where_total
+      # Remove last 'AND'
+      sql_where_total = strip_trailing_and(sql_where_total)
+    end
+
+    @total = Description.count_by_sql("SELECT count(*) FROM reports r %s" % [sql_where_total])
+
+    respond_to do |format|
+      format.html
+      format.xml #{render :xml => @count}
     end
   end
   
