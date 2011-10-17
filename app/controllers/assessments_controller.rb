@@ -8,7 +8,7 @@ class AssessmentsController < ApplicationController
   skip_before_filter :check_authentication, :check_authorization, :only => [ :index, :show ]
   
   ssl_required :new, :create, :edit, :update, :destroy
-  ssl_allowed :index, :show
+  ssl_allowed :index, :show, :count
   
   def check_ownership_and_deny
     deny_authorization if !check_ownership(params[:id])
@@ -52,7 +52,6 @@ class AssessmentsController < ApplicationController
     set_sort_params(params, params[:assessment])
     
     params[:assessment] = {} if !params[:assessment]
-    params[:assessment][:isbn] = format_isbn(params[:assessment][:isbn]) if params[:assessment][:isbn]
     
     user_supplied = false
     
@@ -121,6 +120,11 @@ class AssessmentsController < ApplicationController
     
     params[:assessment] = {} if !params[:assessment]
     
+	# local admins should be able to get stats for their library only without necesarily knowing their library_id
+	if (params[:assessment][:library_id] == 'own' && @current_user.library.id)
+	  params[:assessment][:library_id] = @current_user.library.id
+	end
+
     sql_where_total = get_sql_where_statements(params[:assessment], "a")
 
     sql_where_published = "WHERE" + sql_where_total + " a.published = true"
@@ -184,44 +188,40 @@ class AssessmentsController < ApplicationController
   # POST /assessments
   # POST /assessments.xml
   def create
-    
     begin 
-      Assessment.transaction do
-        
+      Assessment.transaction do        
         params[:assessment] = {} if !params[:assessment]
         params[:assessment][:isbn] = format_isbn(params[:assessment][:isbn]) if params[:assessment][:isbn]
-        
-        ################# Get book information ###################
-        if params[:assessment][:book_id]
+
+	# Book id OR edition id (or edition isbn) must be supplied.
+	# If edition id (or edition isbn) is supplied, book id is ignored and derived from edition instead.     
+        if !(params[:assessment][:book_id] || params[:assessment][:edition_id] || params[:assessment][:isbn])
+          error = "Book id, edition id or edition isbn must be supplied."
+	end
+
+	# Book is supplied	
+	if !error && (params[:assessment][:book_id]) 
           book = Book.find(params[:assessment][:book_id])
           error = "The book id is invalid." if !book
-        elsif params[:assessment][:title]
-          params[:assessment][:authorfirstname] ||= nil
-          params[:assessment][:authorlastname] ||= nil
-          book = Book.where("title = :title and authorfirstname = :authorfirstname and authorlastname = :authorlastname", params[:assessment]).first 
-          book = createbook(params[:assessment][:title], params[:assessment][:authorfirstname], params[:assessment][:authorlastname], params[:assessment][:signum_id]) if !book 
-        else
-          error = "Either book_id or title must be supplied."
         end 
-        ###########################################################              
-        
-        
-        ################## Get edition information ################ 
+
+        # Edition if supplied
         if !error && (params[:assessment][:edition_id] || params[:assessment][:isbn])                   
           if params[:assessment][:edition_id]
-            edition = Edition.where("id = ? and book_id = ?", params[:assessment][:edition_id], book.id).first
-            error = "The edition id is invalid or does not match book." if !edition
-          elsif params[:assessment][:isbn] 
-            edition = Edition.where("isbn = ? and book_id = ?", params[:assessment][:isbn], book.id).first
-            edition = createedition(book.id, params[:assessment][:isbn], params[:assessment][:mediatypecode], params[:assessment][:libris_id]) if !edition
+            edition = Edition.where("id = ?", params[:assessment][:edition_id]).first
+            error = "The edition id is invalid." if !edition
+          else 
+            edition = Edition.where("isbn = ?", params[:assessment][:isbn]).first
+            error = "The isbn is invalid." if !edition
           end
         end
-        ###########################################################
-        
-        
-        #################### Create assessment ####################
+
+        # Create assessment
         if !error 
-          params[:assessment][:book_id] = book.id if book
+	  # Edition trumphs book
+          book_id = book.id if book
+	  book_id = edition.book_id if edition
+          params[:assessment][:book_id] = book_id 
           params[:assessment][:edition_id] = edition.id if edition
           params[:assessment][:user_id] = @current_user.id
           params[:assessment][:published] = false if !params[:assessment][:published]
@@ -231,9 +231,7 @@ class AssessmentsController < ApplicationController
             :comment_text => params[:assessment][:comment_text], :user_id => params[:assessment][:user_id]}
           
           @assessment = Assessment.new(assessment_params)
-        end   
-        #############################################################
-        
+        end
         
         respond_to do |format|
           if error
@@ -264,7 +262,6 @@ class AssessmentsController < ApplicationController
   def update
     
     params[:assessment] = {} if !params[:assessment]
-    params[:assessment][:isbn] = format_isbn(params[:assessment][:isbn]) if params[:assessment][:isbn]
     @assessment = Assessment.find(params[:id])
     respond_to do |format| # Update is restricted to the following 4 fields
       if @assessment.update_attributes({:grade => params[:assessment][:grade], :comment_header => params[:assessment][:comment_header], 

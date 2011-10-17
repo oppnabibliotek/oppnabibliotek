@@ -8,7 +8,7 @@ class TaggingsController < ApplicationController
   skip_before_filter :check_authentication, :check_authorization, :only => [ :index, :show ]
   
   ssl_required :new, :create, :edit, :update, :destroy
-  ssl_allowed :index, :show
+  ssl_allowed :index, :show, :count
   
   def check_ownership_and_deny
     deny_authorization if !check_ownership(params[:id])
@@ -48,7 +48,6 @@ class TaggingsController < ApplicationController
     set_sort_params(params, params[:tagging])
     
     params[:tagging] = {} if !params[:tagging]
-    params[:tagging][:isbn] = format_isbn(params[:tagging][:isbn]) if params[:tagging][:isbn]
     
     params[:tagging][:user_id] = params[:user_id] if params[:user_id]
     
@@ -68,7 +67,7 @@ class TaggingsController < ApplicationController
       library_id = params[:tagging][:library_id]
     end
     
-    # Remove parameters since they do not belong to assessment
+    # Remove parameters since they do not belong to tagging
     params[:tagging].delete("library_id")
     params[:tagging].delete("username")
     
@@ -169,38 +168,35 @@ class TaggingsController < ApplicationController
         end
         ##########################################################
         
-        
-        ################# Get book information ###################
-        if params[:tagging][:book_id]
+	# Book id OR edition id (or edition isbn) must be supplied.
+	# If edition id (or edition isbn) is supplied, book id is ignored and derived from edition instead.     
+        if !(params[:tagging][:book_id] || params[:tagging][:edition_id] || params[:tagging][:isbn])
+          error = "Book id, edition id or edition isbn must be supplied."
+	end
+
+	# Book is supplied	
+	if !error && (params[:tagging][:book_id]) 
           book = Book.find(params[:tagging][:book_id])
           error = "The book id is invalid." if !book
-        elsif params[:tagging][:title]
-          params[:tagging][:authorfirstname] ||= nil
-          params[:tagging][:authorlastname] ||= nil
-          book = Book.where("title = :title and authorfirstname = :authorfirstname and authorlastname = :authorlastname", params[:tagging]).first        
-          book = createbook(params[:tagging][:title], params[:tagging][:authorfirstname], params[:tagging][:authorlastname], params[:tagging][:signum_id]) if !book 
-        else
-          error = "Either book_id or title must be supplied."
         end 
-        ###########################################################              
-        
-        
-        ################## Get edition information ################ 
+
+        # Edition if supplied
         if !error && (params[:tagging][:edition_id] || params[:tagging][:isbn])                   
           if params[:tagging][:edition_id]
-            edition = Edition.where("id = ? and book_id = ?", params[:tagging][:edition_id], book.id).first
-            error = "The edition id is invalid or does not match book." if !edition
-          elsif params[:tagging][:isbn] 
-            edition = Edition.where("isbn = ? and book_id = ?", params[:tagging][:isbn], book.id).first
-            edition = createedition(book.id, params[:tagging][:isbn], params[:tagging][:mediatypecode], params[:tagging][:libris_id]) if !edition
+            edition = Edition.where("id = ?", params[:tagging][:edition_id]).first
+            error = "The edition id is invalid." if !edition
+          else 
+            edition = Edition.where("isbn = ?", params[:tagging][:isbn]).first
+            error = "The isbn is invalid." if !edition
           end
         end
-        ###########################################################
-        
         
         #################### Create tagging ####################
         if !error
-          params[:tagging][:book_id] = book.id if book
+ 	  # Edition trumphs book
+          book_id = book.id if book
+	  book_id = edition.book_id if edition
+          params[:tagging][:book_id] = book_id 
           params[:tagging][:edition_id] = edition.id if edition
           params[:tagging][:tag_id] = tag.id 
           params[:tagging][:user_id] = @current_user.id
@@ -273,6 +269,11 @@ class TaggingsController < ApplicationController
     
     params[:tagging] = {} if !params[:tagging]
     
+	# local admins should be able to get stats for their library only without necesarily knowing their library_id
+	if (params[:tagging][:library_id] == 'own' && @current_user.library.id)
+	  params[:tagging][:library_id] = @current_user.library.id
+	end
+
     sql_where_total = get_sql_where_statements(params[:tagging], "t")
     #sql_where_blacklisted = "WHERE" + sql_where_total + " taggings.tag_id is not null GROUP BY b.tag_id"
     

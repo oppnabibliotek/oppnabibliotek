@@ -3,11 +3,12 @@
 class DescriptionsController < ApplicationController
   
   append_before_filter :check_ownership, :only => [:edit, :update, :destroy]
+  append_before_filter :check_optional_authentication, :only => [:index, :show]
   
   skip_before_filter :check_authentication, :check_authorization, :only => [ :index, :show, :bybookproperty ]
   
   ssl_required :new, :create, :edit, :update, :destroy
-  ssl_allowed :index, :show
+  ssl_allowed :index, :show, :count
   
   def check_ownership
     description = find_description(params)
@@ -42,6 +43,38 @@ class DescriptionsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @descriptions }
       format.atom
+    end
+  end
+  
+  def count
+
+    params[:description] = {} if !params[:description]
+
+	# local admins should be able to get stats for their library only without necesarily knowing their library_id
+	if (params[:description][:library_id] == 'own' && @current_user.library.id)
+	  params[:description][:library_id] = @current_user.library.id
+	end
+
+    sql_where_total = get_sql_where_statements(params[:description], "d")
+
+    #sql_where_published = "WHERE" + sql_where_total + " d.published = true"
+    sql_where_blacklisted = "WHERE" + sql_where_total + " d.id is not null GROUP BY description_id"
+
+    if sql_where_total != ""
+      sql_where_total = "WHERE" + sql_where_total
+      # Remove last 'AND'
+      sql_where_total = strip_trailing_and(sql_where_total)
+    end
+
+    @total = Description.count_by_sql("SELECT count(*) FROM descriptions d inner join users u on d.user_id = u.id inner join libraries l on u.library_id = l.id inner join counties c on l.county_id = c.id %s" % [sql_where_total])
+
+    #@published = Description.count_by_sql("SELECT count(*) FROM descriptions d inner join users u on d.user_id = u.id inner join libraries l on u.library_id = l.id inner join counties c on l.county_id = c.id %s" % [sql_where_published])
+
+    @blacklisted = Description.count_by_sql("SELECT count(*) FROM descriptions d inner join users u on d.user_id = u.id inner join libraries l on u.library_id = l.id inner join counties c on l.county_id = c.id inner join blacklistings b on d.id = b.description_id %s" % [sql_where_blacklisted])
+
+    respond_to do |format|
+      format.html
+      format.xml #{render :xml => @count}
     end
   end
   

@@ -27,6 +27,12 @@ Openlibrary::Application.routes.draw do
     end
   end
 
+  resources :descriptions do
+    collection do
+      get :count
+    end
+  end
+
 
   resources :counties do
     resources :libraries

@@ -5,7 +5,7 @@ class TagsController < ApplicationController
   skip_before_filter :check_authentication, :check_authorization, :only => [ :index, :show ]
   
   ssl_required :new, :create, :edit, :update, :destroy
-  ssl_allowed :index, :show
+  ssl_allowed :index, :show, :count
   
   def check_blacklisting(tag_id)
     
