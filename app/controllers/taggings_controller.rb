@@ -57,7 +57,7 @@ class TaggingsController < ApplicationController
       params[:tagging][:user_id] = params[:user_id]
       user_supplied = true
     elsif params[:tagging][:library_id] && params[:tagging][:username]
-      user = User.where("library_id = ? and username = ?", params[:tagging][:library_id], params[:tagging][:username]]).first
+      user = User.where("library_id = ? and username = ?", params[:tagging][:library_id], params[:tagging][:username]).first
       if user
         params[:tagging][:user_id] = user.id
         user_supplied = true
@@ -78,8 +78,7 @@ class TaggingsController < ApplicationController
     end
     
     if library_id
-      @taggings = Tagging.where(get_condition_string(params[:tagging], library_id, "taggings"), 
-                                     joins(:users).order(params[:order]).limit(params[:limit]).offset(params[:offset]).all
+      @taggings = Tagging.where(get_condition_string(params[:tagging], library_id, "taggings")).joins(:users).order(params[:order]).limit(params[:limit]).offset(params[:offset]).all
     else
       @taggings = Tagging.where(params[:tagging]).order(params[:order]).limit(params[:limit]).offset(params[:offset]).all
     end
@@ -189,10 +188,10 @@ class TaggingsController < ApplicationController
         ################## Get edition information ################ 
         if !error && (params[:tagging][:edition_id] || params[:tagging][:isbn])                   
           if params[:tagging][:edition_id]
-            edition = Edition.where("id = ? and book_id = ?", params[:tagging][:edition_id], book.id]).first
+            edition = Edition.where("id = ? and book_id = ?", params[:tagging][:edition_id], book.id).first
             error = "The edition id is invalid or does not match book." if !edition
           elsif params[:tagging][:isbn] 
-            edition = Edition.where("isbn = ? and book_id = ?", params[:tagging][:isbn], book.id ]).first
+            edition = Edition.where("isbn = ? and book_id = ?", params[:tagging][:isbn], book.id).first
             edition = createedition(book.id, params[:tagging][:isbn], params[:tagging][:mediatypecode], params[:tagging][:libris_id]) if !edition
           end
         end
