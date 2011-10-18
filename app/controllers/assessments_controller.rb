@@ -71,6 +71,11 @@ class AssessmentsController < ApplicationController
       library_id = params[:assessment][:library_id]
     end
     
+	# Users should be able to get stats for their library without necessarily knowing their library_id
+	if (library_id == 'own' && @current_user.library.id)
+	  library_id = @current_user.library.id
+	end
+    
     # Remove parameters since they do not belong to assessment
     params[:assessment].delete("library_id")
     params[:assessment].delete("username")
@@ -84,7 +89,7 @@ class AssessmentsController < ApplicationController
     end
     
     if library_id
-      @assessments = Assessment.where(get_condition_string(params[:assessment], library_id, "assessments")).joins(:users).order(params[:order]).limit(params[:limit]).offset(params[:offset]).all
+      @assessments = Assessment.where(get_condition_string(params[:assessment], library_id, "assessments")).joins("INNER JOIN users u ON u.id = assessments.user_id").order(params[:order]).limit(params[:limit]).offset(params[:offset]).all
     else
       @assessments = Assessment.where(params[:assessment]).order(params[:order]).limit(params[:limit]).offset(params[:offset]).all
     end
@@ -120,7 +125,7 @@ class AssessmentsController < ApplicationController
     
     params[:assessment] = {} if !params[:assessment]
     
-	# local admins should be able to get stats for their library only without necesarily knowing their library_id
+	# Users should be able to get stats for their library without necessarily knowing their library_id
 	if (params[:assessment][:library_id] == 'own' && @current_user.library.id)
 	  params[:assessment][:library_id] = @current_user.library.id
 	end
