@@ -75,6 +75,11 @@ class BlacklistingsController < ApplicationController
     end
     ##############################################################################
     
+	# Users should be able to get stats for their library without necessarily knowing their library_id
+	if (params[:blacklisting][:library_id] == 'own' && @current_user.library.id)
+	  params[:blacklisting][:library_id] = @current_user.library.id
+	end
+    
     @blacklisting = Blacklisting.new(params[:blacklisting]) if !error
     
     respond_to do |format|
