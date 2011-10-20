@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   ssl_required :new, :create, :edit, :update, :destroy
   ssl_allowed :index, :show, :search, :authors
   
-  @@bookfields = ["title", "authorfirstname", "authorlastname", "booktitle_part1", "booktitle_part1", "group_inst", "agegroupname", "targetgroupname", "signumname", "reserved", "keyword"]
+  @@bookfields = ["title", "authorfirstname", "authorlastname", "booktitle_part1", "booktitle_part2", "group_inst", "agegroupname", "targetgroupname", "signumname", "reserved", "keyword"]
   @@editionfields = ["isbn", "year", "illustrator", "translator", "recordnr", "recordcompany", "auxcreator", "image", "published", "manual", "mediatype", "mediatypecode","ssb_key"]
   @@descriptionfields = ["text"]
   @@userfields = ["libraryname", "userfirstname", "userlastname", "username"]
