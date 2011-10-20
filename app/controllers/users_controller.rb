@@ -23,6 +23,14 @@ class UsersController < ApplicationController
       # do nothing
     elsif (@current_user.local_admin?)
       if params[:action] == "create"
+        # If no library id is given we use the same as current
+        if !params[:user][:library_id]
+          params[:user][:library_id] = @current_user.library.id
+        end
+        # Allowing role ids to be specified as comma-separated string: 1,2,3
+        if params[:user][:role_ids].instance_of?(String)
+          params[:user][:role_ids] = params[:user][:role_ids].split(',')
+        end      
         edited_user = User.new(params[:user])
       elsif params[:action] == "byusername"
         edited_user = User.where('username = ?' , params[:username]).first
@@ -32,10 +40,7 @@ class UsersController < ApplicationController
       if !edited_user
         raise UserNotFoundException
       end
-      edited_user_library = edited_user.library
-      edited_user_library_id = edited_user_library.id 
-      current_user_library_id = @current_user.library.id
-      unless edited_user_library_id == current_user_library_id
+      unless (edited_user.library && edited_user.library.id == @current_user.library.id)
         deny_authorization
       end
     elsif (@current_user.writer? || @current_user.member?)
@@ -204,6 +209,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    # Allowing role ids to be specified as comma-separated string: 1,2,3
+    if params[:user][:role_ids].instance_of?(String)
+      params[:user][:role_ids] = params[:user][:role_ids].split(',')
+    end
+    # Helper check since there are no constraints in the underlying db
+    if !params[:user][:library_id]
+            raise 'The user must have an library_id'
+    end    
     @user = User.new(params[:user])
     if check_permissions_for_setting_roles
       respond_to do |format|
@@ -226,6 +239,14 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+    # Allowing role ids to be specified as comma-separated string: 1,2,3
+    if params[:user][:role_ids].instance_of?(String)
+      params[:user][:role_ids] = params[:user][:role_ids].split(',')
+    end
+    # Helper check since there are no constraints in the underlying db
+    if !params[:user][:library_id]
+            raise 'The user must have an library_id'
+    end
     @user = User.find(params[:id])
     if check_permissions_for_setting_roles
       respond_to do |format|
