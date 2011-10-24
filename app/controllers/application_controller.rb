@@ -209,8 +209,19 @@ class ApplicationController < ActionController::Base
     if params
       sql_where_total << " u.library_id = '%s' AND" % params[:library_id] if params[:library_id]
       sql_where_total << " c.id = '%s' AND" % params[:county_id] if params[:county_id]
-      sql_where_total << " " + activity_table + ".created_at > '%s' AND" % params[:date_from] if params[:date_from]
-      sql_where_total << " " + activity_table + ".created_at < '%s' AND" % params[:date_to] if params[:date_to]
+      ##sql_where_total << " " + activity_table + ".created_at > '%s' AND" % params[:date_from] if params[:date_from]
+      ##sql_where_total << " " + activity_table + ".created_at < '%s' AND" % params[:date_to] if params[:date_to]
+      # Hack to support more parameters
+      params.keys.each { |key|
+        if key.eql?("created_at")
+          from_date = params[key].first
+          to_date = params[key].last
+          sql_where_total << " " + activity_table + "." + key + " >= '%s' AND" % from_date
+          sql_where_total << " " + activity_table + "." + key + " <= '%s' AND" % to_date
+        else
+          sql_where_total << " " + activity_table + "." + key + " = '%s' AND" % params[key]
+        end
+      }      
     end
     if with_where
       if sql_where_total != ""
