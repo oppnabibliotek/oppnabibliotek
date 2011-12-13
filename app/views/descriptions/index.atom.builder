@@ -1,4 +1,5 @@
-atom_feed(:url => formatted_description_url(:atom), :schema_date => @descriptions.first.created_at) do |feed|
+#atom_feed(:url => formatted_description_url(:atom), :schema_date => @descriptions.first.created_at) do |feed|
+atom_feed(:schema_date => @descriptions.first.created_at) do |feed|
   feed.title("Descriptions")
   feed.updated(@descriptions.first ? @descriptions.first.created_at : Time.now.utc)
   
