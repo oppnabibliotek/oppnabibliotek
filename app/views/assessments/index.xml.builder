@@ -26,6 +26,7 @@ xml.assessments(:type => 'array') do
         xml.edition do
           xml.id(assessment.edition.id)
           xml.isbn(assessment.edition.isbn)
+          xml.ssb_key(assessment.edition.ssb_key)
         end
       end
     end
