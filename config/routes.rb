@@ -30,6 +30,7 @@ Openlibrary::Application.routes.draw do
 
   resources :descriptions do
     collection do
+      get :bybookproperty
       get :count
     end
   end
@@ -56,12 +57,6 @@ Openlibrary::Application.routes.draw do
       get :usersearch
       post :usersearch
       get :dbdump
-    end
-  end
-
-  resources :descriptions do
-    collection do
-      get :bybookproperty
     end
   end
 
