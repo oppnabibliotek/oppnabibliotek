@@ -156,8 +156,10 @@ class DescriptionsController < ApplicationController
     params[:limit] ||= 5
     if params[:property] && params[:value]
       # Line below can probably be written as .joins(:editions => :books)
-      #:include => [{:edition => :book}],
-      @descriptions = Description.where("books.? = ?", params[:property], params[:value]).joins("inner join editions on descriptions.edition_id = editions.id inner join books on editions.book_id = books.id").includes([:edition, {:user => :library}]).order("descriptions.created_at desc").limit(params[:limit]).all
+      #:include => [{:edition => :book}]
+      @descriptions = Description.where("books.#{params[:property]} = ?", params[:value])
+	.joins("inner join editions on descriptions.edition_id = editions.id inner join books on editions.book_id = books.id")
+	.includes([:edition, {:user => :library}]).order("descriptions.created_at desc").limit(params[:limit]).all
     end
     respond_to do |format|
       format.html # index.html.erb
