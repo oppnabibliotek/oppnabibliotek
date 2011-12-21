@@ -1,0 +1,462 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Använd material från Öppna bi...</title>
+<style type="text/css">
+/* default css */
+table {
+font-size: 1em;
+line-height: inherit;
+}
+tr {
+text-align: left;
+}
+div, address, ol, ul, li, option, select {
+margin-top: 0px;
+margin-bottom: 0px;
+}
+p {
+margin: 0px;
+}
+body {
+margin: 6px;
+padding: 0px;
+font-family: Verdana, sans-serif;
+font-size: 10pt;
+background-color: #ffffff;
+}
+img {
+-moz-force-broken-image-icon: 1;
+}
+@media screen {
+html.pageview {
+background-color: #f3f3f3 !important;
+}
+body {
+min-height: 1100px;
+}
+* html body {
+height: 1100px;
+}
+.pageview body {
+border-top: 1px solid #ccc;
+border-left: 1px solid #ccc;
+border-right: 2px solid #bbb;
+border-bottom: 2px solid #bbb;
+width: 648px !important;
+margin: 15px auto 25px;
+padding: 40px 50px;
+}
+/* IE6 */
+* html {
+overflow-y: scroll;
+}
+* html.pageview body {
+overflow-x: auto;
+}
+/* Prevent repaint errors when scrolling in Safari. This "Star-7" css hack
+targets Safari 3.1, but not WebKit nightlies and presumably Safari 4.
+That's OK because this bug is fixed in WebKit nightlies/Safari 4 :-). */
+html*#wys_frame::before {
+content: '\A0';
+position: fixed;
+overflow: hidden;
+width: 0;
+height: 0;
+top: 0;
+left: 0;
+}
+.writely-callout-data {
+display: none;
+}
+.writely-footnote-marker {
+background-image: url('images/footnote_doc_icon.gif');
+background-color: transparent;
+background-repeat: no-repeat;
+width: 7px;
+overflow: hidden;
+height: 16px;
+vertical-align: top;
+}
+.editor .writely-footnote-marker {
+cursor: move;
+}
+.writely-footnote-marker-highlight {
+background-position: -15px 0;
+}
+.writely-footnote-hide-selection ::-moz-selection, .writely-footnote-hide-selection::-moz-selection {
+background: transparent;
+}
+.writely-footnote-hide-selection ::selection, .writely-footnote-hide-selection::selection {
+background: transparent;
+}
+.writely-footnote-hide-selection {
+cursor: move;
+}
+.editor .writely-comment-yellow {
+background-color: #FF9;
+background-position: -240px 0;
+}
+.editor .writely-comment-yellow-hover {
+background-color: #FF0;
+background-position: -224px 0;
+}
+.editor .writely-comment-blue {
+background-color: #C0D3FF;
+background-position: -16px 0;
+}
+.editor .writely-comment-blue-hover {
+background-color: #6292FE;
+background-position: 0 0;
+}
+.editor .writely-comment-orange {
+background-color: #FFDEAD;
+background-position: -80px 0;
+}
+.editor .writely-comment-orange-hover {
+background-color: #F90;
+background-position: -64px 0;
+}
+.editor .writely-comment-green {
+background-color: #99FBB3;
+background-position: -48px 0;
+}
+.editor .writely-comment-green-hover {
+background-color: #00F442;
+background-position: -32px 0;
+}
+.editor .writely-comment-cyan {
+background-color: #CFF;
+background-position: -208px 0;
+}
+.editor .writely-comment-cyan-hover {
+background-color: #0FF;
+background-position: -192px 0;
+}
+.editor .writely-comment-purple {
+background-color: #EBCCFF;
+background-position: -144px 0;
+}
+.editor .writely-comment-purple-hover {
+background-color: #90F;
+background-position: -128px 0;
+}
+.editor .writely-comment-magenta {
+background-color: #FCF;
+background-position: -112px 0;
+}
+.editor .writely-comment-magenta-hover {
+background-color: #F0F;
+background-position: -96px 0;
+}
+.editor .writely-comment-red {
+background-color: #FFCACA;
+background-position: -176px 0;
+}
+.editor .writely-comment-red-hover {
+background-color: #FF7A7A;
+background-position: -160px 0;
+}
+.editor .writely-comment-marker {
+background-image: url('images/markericons_horiz.gif');
+background-color: transparent;
+padding-right: 11px;
+background-repeat: no-repeat;
+width: 16px;
+height: 16px;
+-moz-user-select: none;
+}
+.editor .writely-comment-hidden {
+padding: 0;
+background: none;
+}
+.editor .writely-comment-marker-hidden {
+background: none;
+padding: 0;
+width: 0;
+}
+.editor .writely-comment-none {
+opacity: .2;
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=20);
+-moz-opacity: .2;
+}
+.editor .writely-comment-none-hover {
+opacity: .2;
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=20);
+-moz-opacity: .2;
+}
+.br_fix br:not(:-moz-last-node):not(:-moz-first-node) {
+position:relative;
+left: -1ex
+}
+.br_fix br+br {
+position: static !important
+}
+}
+h6 { font-size: 8pt }
+h5 { font-size: 8pt }
+h4 { font-size: 10pt }
+h3 { font-size: 12pt }
+h2 { font-size: 14pt }
+h1 { font-size: 18pt }
+blockquote {padding: 10px; border: 1px #DDD dashed }
+a img {border: 0}
+.pb {
+border-width: 0;
+page-break-after: always;
+/* We don't want this to be resizeable, so enforce a width and height
+using !important */
+height: 1px !important;
+width: 100% !important;
+}
+.editor .pb {
+border-top: 1px dashed #C0C0C0;
+border-bottom: 1px dashed #C0C0C0;
+}
+div.google_header, div.google_footer {
+position: relative;
+margin-top: 1em;
+margin-bottom: 1em;
+}
+/* Table of contents */
+.editor div.writely-toc {
+background-color: #f3f3f3;
+border: 1px solid #ccc;
+}
+.writely-toc > ol {
+padding-left: 3em;
+font-weight: bold;
+}
+ol.writely-toc-subheading {
+padding-left: 1em;
+font-weight: normal;
+}
+/* IE6 only */
+* html writely-toc ol {
+list-style-position: inside;
+}
+.writely-toc-none {
+list-style-type: none;
+}
+.writely-toc-decimal {
+list-style-type: decimal;
+}
+.writely-toc-upper-alpha {
+list-style-type: upper-alpha;
+}
+.writely-toc-lower-alpha {
+list-style-type: lower-alpha;
+}
+.writely-toc-upper-roman {
+list-style-type: upper-roman;
+}
+.writely-toc-lower-roman {
+list-style-type: lower-roman;
+}
+.writely-toc-disc {
+list-style-type: disc;
+}
+/* end default css */
+/* custom css */
+/* end custom css */
+/* ui edited css */
+body {
+font-family: Verdana;
+font-size: 10.0pt;
+line-height: normal;
+background-color: #ffffff;
+}
+/* end ui edited css */
+/* editor CSS */
+.editor a:visited {color: #551A8B}
+.editor table.zeroBorder {border: 1px dotted gray}
+.editor table.zeroBorder td {border: 1px dotted gray}
+.editor table.zeroBorder th {border: 1px dotted gray}
+.editor div.google_header, .editor div.google_footer {
+border: 2px #DDDDDD dashed;
+position: static;
+width: 100%;
+min-height: 2em;
+}
+.editor .misspell {background-color: yellow}
+.editor .writely-comment {
+font-size: 9pt;
+line-height: 1.4;
+padding: 1px;
+border: 1px dashed #C0C0C0
+}
+/* end editor CSS */
+</style>
+<style>
+#google-view-footer {
+clear: both;
+border-top: thin solid;
+padding-top: 0.3em;
+padding-bottom: 0.3em;
+}
+a.google-small-link:link, a.google-small-link:visited {
+color:#112ABB;
+font-family:Arial,Sans-serif;
+font-size:11px !important;
+}
+body, p, div, td {
+direction: inherit;
+}
+@media print {
+#google-view-footer {
+display: none;
+}
+}
+</style>
+</head>
+<body>
+<div id="doc-contents">
+
+<h1 id="zcf8">
+Använd material från Öppna bibliotek
+</h1>
+<br id="xm7n0">
+<h3 id="zcf80">
+
+Öppna bibliotek använder en Creative Commonslicens
+</h3>
+<div id="zcf82">
+Öppna Bibliotek använder en Creative Commonslicens som ger deltagande bibliotek möjlighet att dela information men ger samtidigt biblioteken rätt till sitt eget redaktionella material och användarna rätt till sina recensionstexter, betyg och etiketter. Ingen annan part äger, kontrollerar eller tar betalt för detta material.<br id="xr3p">
+</div>
+<div id="zcf811">
+Samtidigt tillåter denna licens att andra parter än bibliotek kan använda material från tjänsten; informationen kan nyttjas i system, tjänster och produkter för skolor, organisationer och enskilda medborgare. Licensen godkänner återpublicering i icke-kommersiella sammanhang så länge upphovsmannen anges och materialet inte bearbetas.<br id="vcmh">
+<br id="u:hk2">
+Att vara med i Öppna Bibliotek innebär också ett åtagande – bibliotek som är med i samarbetet förväntas också bidra med innehåll. Deltagande bibliotek godkänner också att materialet publiceras i olika sammanhang; på webbplatsen www.boktips.net, på enskilda biblioteks webbplatser och kataloger, etc.<br id="z8o4">
+<br id="vcmh1">
+Om du använder material från Öppna Bibliotek så skall du även ange vilket bibliotek och skribent som har skapat informationen och länka till dessa då sådan information finns tillgänglig. Läs mer under "Visning av mervärden från Öppna Bibliotek" nedan.<br id="vcmh2">
+&nbsp;<br id="vcmh3">
+Hämtar du mer än några enstaka texter så behöver du även ta kontakt med Öppna Bibliotek (<a href="mailto:kontakt@oppnabibliotek.se" id="zcf828">kontakt@oppnabibliotek.se</a>)&nbsp;så att vi vet var materialet används och hur mycket detta eventuellt påverkar prestanda på servrar etc.<br id="cy:q">
+
+<br id="vcmh4">
+</div>
+<h3 id="zcf812">
+Hur hämtar jag material från Öppna Bibliotek?
+</h3>
+Om du vill hämta material från Öppna Bibliotek så använder du de s k API:er som finns framtagna för att hämta, skapa och ändra material. Du har då direkt tillgång till den senaste informationen från alla anslutna bibliotek. Du kan också styra över hur, vad och i vilket sammahang du presenterar informationen.<br id="r411">
+<br id="r4110">
+Läs mer: <a href="http://docs.google.com/View?docID=0AeCqM55XdDu3ZGdxNHA4c2hfMTA3NmQ2eGZiY2Nm&revision=_latest" target="_blank" title="Öppna biblioteks API definitioner i ett nytt fönster">Öppna bibliotek API definitioner</a><br id="vyax">
+<br id="a52l">
+Läs mer om API:er i allmänhet på wikipedia; <a href="http://sv.wikipedia.org/wiki/Application_Programming_Interface" id="yr3h" target="_blank" title="Gå till Wiki och läs om API.er. Öppna i ett nytt fönster">Application Programming Interface</a><br id="ml:g0">
+<h3 id="ml:g1">
+Visning av mervärden från Öppna Bibliotek<br id="k0jn2">
+
+</h3>
+<div id="zcf813">
+<div id="zcf814">
+Om du hämtar och visar material från Öppna Bibliotek så skall du ange namn på den som ursprungligen skrivit texten, "skribenten" i det fall som denna information finns tillgänglig i datat via Öppna Biblioteks API:er. I direkt anslutning till skribentens namn skall även bibliotekets namn anges och länkas förutsatt att webbadress finns angivet i datat från Öppna Bibliotek. Mer information om hur denna länkning går till finns under avsnittet "Länka till bibliotek och skribenter" i dokumentet <a href="View?docid=dgq4p8sh_1076d6xfbccf&amp;revision=_latest" id="fivl" target="_blank" title="Öppna bibliotek API definitioner">Öppna bibliotek API definitioner</a><br id="afgm2">
+<br id="ayl2">
+En länk till Öppna Bibliotekets licenstext (den här sidan) skall finnas på alla ställen där
+material från Öppna Bibliotek finns, adressen är http://www.oppnabibliotek.org/licens.html. Den
+måste vara placerad så att det tydligt framgår vilken information som är hämtad från Öppna
+Bibliotek. Direkt efter texten infogas Öppna Biblioteks minilogo, ekollonet. Du kan kopiera
+bilden härifrån <img id="di280" src="OB_small_logo.gif"> eller länka in bilden ifrån adressen
+http://www.oppnabibliotek.org/OB_small_logo.gif<br id="k0jn1">
+<br id="wcwk0">
+<i id="wcwk1">Exempel:</i>
+</div>
+<div id="zcf815">
+
+&nbsp;
+</div>
+<div id="zcf822">
+<div id="l_y3" style="margin-left: 40px;">
+<i id="zcf817">Texten är skriven av <a href="http://www.biblioteket.stockholm.se/default.asp?id=2149&amp;ptid=&amp;column=CS%5FDocument%5FTitle&amp;value=Daniel+Andersson" id="owwc" title="Gå till Daniels Anderssons sida">Daniel Andersson</a> på <u id="zcf819"><a href="http://www.biblioteket.stockholm.se" id="y186" style="color: rgb(0, 0, 255);" title="Gå till Stockholms bibliotek">Stockholms stadsbibliotek</a>,</u> Texten kommer från <a href="http://www.oppnabibliotek.org/licens.html" id="tc47" style="color: rgb(0, 0, 255);" title="Gå till Öppna Bibliotek">Öppna Bibliotek</a> </i><img id="fgd4" src="File?id=dgq4p8sh_1224fz647g5n_b"><br id="e1tq">
+</div>
+&nbsp;<br id="h-lu1">
+
+<br id="bwh5">
+</div>
+<div id="zcf827">
+Du kan även (valfritt) ange vilken licens som används genom att länka till <i id="mpuc">Creative Commons Erkännande-Ickekommersiell-Inga bearbetningar 2.5 Sverige Licens </i>på<br id="zcf824">
+<a href="http://creativecommons.org/licenses/by-nc-nd/2.5/se/" id="zcf825">http://creativecommons.org/licenses/by-nc-nd/2.5/se/</a> och även använda Creative Commons licensens specifika logotyp;<br id="w:mg">
+<br id="xpv_">
+http://i.creativecommons.org/l/by-nc-nd/2.5/se/88x31.png<br id="w:mg0">
+<img alt="http://i.creativecommons.org/l/by-nc-nd/2.5/se/88x31.png" id="w:mg1" src="http://i.creativecommons.org/l/by-nc-nd/2.5/se/88x31.png"><br id="xpv_0">
+<br id="w:mg2">
+http://i.creativecommons.org/l/by-nc-nd/2.5/se/80x15.png<br id="w:mg3">
+
+<img alt="http://i.creativecommons.org/l/by-nc-nd/2.5/se/80x15.png" id="xpv_1" src="http://i.creativecommons.org/l/by-nc-nd/2.5/se/80x15.png"><br id="eanr">
+<br id="w:mg4">
+<br id="tkke">
+I tryckta sammanhang är det inte nödvändigt att återge länkar till skribenter och bibliotek, i övrigt gäller samma regler som ovan. Minilogon är dock inte nödvändig att använda i tryckt form. Webbadressen kan anges som en del av namnet Öppna Bibliotek.<br id="v3ik">
+<br id="v3ik0">
+<i id="gp67">Exempel tryckt material: </i><br id="v3ik1">
+&nbsp;<br id="v3ik2">
+<i id="ppk4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Texten är skriven av Daniel Andersson på Stockholms stadsbibliotek, Texten kommer från ÖppnaBibliotek.org</i><br id="j:jz">
+<br id="rfdq">
+Information från, eller funktioner som är kopplade mot Öppna Bibliotek får inte användas tillsammans med andra tjänster där det finns risk att användaren inte klart uppfattar skillnaden mellan tjänsterna, t ex är det inte tillåtet att visa upp betyg från Öppna bibliotek och samtidigt spara betyg som användaren sätter i en annan tjänst.<br id="hhpp">
+<br id="rfdq0">
+</div>
+
+</div>
+<h3 id="zcf829">
+Speciellt för Bibliotek
+</h3>
+<div id="zcf831">
+<b id="zcf832">Om du behöver bearbeta materialet</b>
+</div>
+<div id="zcf833">
+I vissa sammanhang t ex i tryckt form på ett talboksomslag är det tillåtet för bibliotek att publicera utdrag ur boktips. Långa texter kan även få delas upp i flera vyer på t ex en webbplats, bara varje enskild vy uppfyller kraven på visning av upphovsman etc.<br id="z-:g">
+<br id="o0u.">
+<br id="r.gk0">
+</div>
+<div id="zcf834">
+</div>
+<div id="zcf836">
+
+<b id="zcf837">Om du vill ingå i samarbetet Öppna Bibliotek</b>
+</div>
+<div id="zcf838">
+Om du vill vara med och skapa material på Öppna Bibliotek så behöver du ansluta dig till Öppna Bibliotek eller någon av de tjänster som använder sig av Öppna Bibliotek, te x Boktips.net. Du får då inloggningsuppgifter till tjänsten.<br id="x:ry">
+<br id="x:ry0">
+Vill du delta i samarbetet Öppna Bibliotek maila <a href="mailto:kontakt@oppnabibliotek.se" id="rhbs" target="_blank" title="Maila till kontakt@oppnabibliotek.se">kontakt@oppnabibliotek.se</a><br id="u:hk">
+<br id="u:hk0">
+Du kan även ingå i samarbetet delvis genom att ansluta dig till Boktips.net. Boktips.net erbjuder gränssnitt för att dela bibliotekens boktips via Öppna Bibliotek. Det innebär att bibliotek får möjlighet att lägga in och visa boktips utan att behöva bygga gränssnitten själva.<br id="u:hk3">
+<br id="lx7s">
+Öppna Biblioteks APIer ger nya och stora möjligheter att bygga såväl inmatnings- som visningsgränssnitt mot den information som delas, i dagsläget (augusti 2008) boktips, under kvartal 1 2009 även användargenererade mervärden. För många bibliotek som deltar i boktipssamarbetet kan en blandform säkert vara intressant; att använda Boktips.net:s gränssnitt för att lägga in boktips och Öppna Biblioteks APier för att bygga skräddarsydda lokala lösningar för visning av mervärden.<br id="lx7s0">
+<br id="j0.0">
+
+För mer information om Boktips.net se "<a href="http://www.boktips.net/index.php?p=6&amp;style=#about" id="eyo3" target="_blank" title="Öppna www.boktips.net i nytt fönster">om boktips.net</a>"<br id="u:hk4">
+</div>
+<div id="zcf840">
+</div>
+<h3 id="zcf842">
+Speciellt för produktutvecklare, sajtägare m fl
+</h3>
+<div id="zcf843">
+</div>
+<div id="zcf845">
+Om du utvecklar produkter eller tjänster för bibliotek så kan du anpassa din produkt till att hämta och visa mervärden, men det finns även möjligheter att låta personal på bibliotek eller identifierade användare spara mervärden direkt till Öppna Bibliotek.<br id="fo28">
+<br id="fo280">
+För vidare information, kontakta <a href="mailto:kontakt@oppnabibliotek.se" id="x:ry4" target="_blank" title="Maila till kontakt@oppnabibliotek.se">kontakt@oppnabibliotek.se</a>
+
+</div>
+<div id="zcf847">
+</div>
+<h3 id="zcf849">
+Övrigt
+</h3>
+<div id="zcf850">
+Öppna bibliotek ansvarar inte för eventuella problem som driftsstörningar kan ge upphov till.<br id="dh_r">
+&nbsp;
+</div>
+<div id="zcf851">
+Läs mer om projektet under "<a href="http://www.oppnabibliotek.se/" id="zcf852" title="Öppna bibliotek">Öppna Bibliotek</a>"<br id="x:ry2">
+<br id="x:ry3">
+
+</div>
+Vid frågor kontakta <a href="mailto:kontakt@oppnabibliotek.se" id="sqh30" target="_blank" title="Maila till kontakt@oppnabibliotek.se">kontakt@oppnabibliotek.se</a><br id="q8mz">
+<br id="q8mz0">
+Länka till den här sidan: <a href="http://www.oppnabibliotek.org/licens.html" id="ixeb" target="_blank" title="Gå till www.oppnabibliotek.org/licens.htm">www.oppnabibliotek.org/licens.html</a><br id="l:bb">
+<br id="sun:">
+<br id="nb_0">
+<br clear="all"/>
+</div>
+</body>
+</html>

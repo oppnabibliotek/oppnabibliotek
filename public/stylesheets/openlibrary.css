@@ -1,0 +1,296 @@
+* { 
+padding: 0;
+margin: 0;
+}
+
+img { border: none; }
+
+body {
+background-color:#FFFFFF;
+border-top:5px solid #333333;
+color:#555555;
+font-family:Georgia,"Times New Roman",Times,serif;
+width: 100%;
+height: 100%;
+margin: 0;
+padding: 0;
+}
+
+html, body { height: 100%; }
+
+
+a {
+color: #557799;
+text-decoration: none;
+}
+
+p {
+margin: 0;
+padding: 0;
+}
+
+h1 {
+font-size: 1.4em;
+color: #E87830;
+font-weight: normal;
+}
+
+
+h2, h3, h4 { font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif; }
+
+h2 {
+font-size: 1.6em;
+color: #b4c24b;
+font-weight: normal;
+padding-bottom: 20px;
+white-space: nowrap;
+}
+
+a.button { 
+background: #b4c24b;
+color: #fff;
+width: 100px;
+display: block;
+text-align: center;
+white-space: nowrap;
+font-size: 12px;
+line-height: 1.8em;
+border: 1px solid #828e2c;
+}
+
+a.button:hover { 
+background: #828e2c;
+border: 1px solid #333;
+color: #fff;
+}
+
+.border { 
+border-top: 1px solid #ccc; 
+padding-top: 10px; 
+display: block; 
+margin-top: 25px; 
+}
+
+
+/* --------------------------------------------------------------- Header & Navigation */
+
+#top {
+   background-color:#f2f2f2;
+/* float: left; */
+width: 100%;
+height: 60px;
+/* top: 0;
+left: 0;
+z-index: 100;
+position: absolute;*/
+border-bottom: 1px solid #ccc; 
+}
+
+#top #logo {
+float: left;
+width: 320px;
+padding: 17px 0 0 35px;
+}
+
+#top #top_links {
+float: left;
+padding-left: 20px;
+padding-top: 15px;
+}
+
+.top_link {
+float: left;
+height: 32px;
+margin-right: 18px;
+padding-left: 18px;
+color: #557799;
+font-weight: normal;
+line-height: 34px;
+border-left: 1px solid #ccc;
+}
+
+.top_link:hover { color: #cc0000; }
+
+#top #top_userinfo {
+float: right;
+color: #000000;
+padding-right: 30px;
+padding-top: 10px;
+padding-left: 20px;
+font-size: 14px;
+line-height: 34px;
+}
+
+/* --------------------------------------------------------------- Layout */
+
+#content {
+float: left;
+position: relative;
+height: 100%;
+}
+
+/*#content #column_userlist {
+float: left;
+position: absolute;
+width: 200px;
+top: 52px;
+height: 100%;
+background-color: #555555;
+}*/
+
+#content #column_main {
+position: absolute;
+left: 35px;
+padding-top: 50px;
+}
+
+.searchfield { height: 25px; }
+
+.searchfield #search { 
+width: 250px; 
+padding: 2px;
+}
+
+.search-form { 
+background: none; 
+border: none; 
+padding:0;
+}
+
+/* --------------------------------------------------------------- Tables */
+
+tr { background: #eee; }
+tr.even { background: #fff; }
+
+table { 
+border: 1px solid #ccc; 
+margin-top: 40px;  /* changed from 20 to make room for spinner */
+margin-bottom: 20px;
+width: 940px;
+}
+
+table th { 
+text-align: left;
+font-size: 12px;
+background: #fff;
+padding: 10px 5px 10px 5px;
+border-bottom: 1px solid #ccc;
+}
+
+table td { 
+vertical-align: top;
+padding:0;
+border: none;
+font-size: 12px;
+padding: 10px 5px 10px 5px;
+}
+
+table a:hover, .pagination a:hover { color: #cc0000; }
+
+
+/* --------------------------------------------------------------- Pagination */
+
+.pagination {
+width: 940px;
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc; 
+padding: 10px 0 10px 0;
+margin-bottom: 20px;
+}
+
+
+/* --------------------------------------------------------------- Definition List */
+
+dl { 
+font-size: 14px; 
+width: 555px;
+border: 1px solid #ccc; 
+padding: 16px 16px 6px 16px; 
+margin-bottom: 25px; 
+}
+
+dt { font-weight: bold;  }
+dd { padding-bottom: 15px; }
+
+
+/* --------------------------------------------------------------- Form */
+
+form { 
+background: #eee; 
+padding: 4px 16px 16px 16px; 
+width: 480px;
+border: 1px solid #ccc; 
+margin-bottom: 20px; 
+}
+
+form.edit_library { 
+background: #eee; 
+padding: 4px 16px 16px 16px; 
+width: 230px;
+border: 1px solid #ccc; 
+margin-bottom: 20px; 
+}
+
+form label {
+font-weight: bold;
+font-size: 14px;
+display: block;
+margin-top: 12px;
+padding-bottom: 2px;
+}
+
+#user_username, #user_password, #user_firstname, #department_department_ids, #user_email, #user_lastname, #user_dynamicinfolink {
+width: 220px; 
+padding: 1px 3px 1px 3px;
+}
+
+#user_library_id { width: 230px;}
+
+#user_role_ids { 
+padding: 1px 3px 1px 3px;
+width: 230px; 
+height: 100px;
+}
+
+#library_name, #library_userinfolink, #library_infolink, #library_bookinfolink, #library_abuse_email, #library_dev_key {
+width: 220px; 
+padding: 1px 3px 1px 3px;
+}
+
+#library_county_id {
+width: 230px; 
+padding: 1px 3px 1px 3px;
+}
+
+.form-double-column {
+height: 55px;
+width: 480px;
+padding-bottom: 15px;
+border-bottom: 1px solid #fff; 
+}
+
+.form-double-column .left {
+float: left;
+padding-right: 10px;
+}
+
+.form-double-column .right { float: right; }
+
+#form-buttons {
+width: 480px;
+margin-top: 15px;
+border-top: 1px solid #fff;
+padding-top: 15px;
+}
+
+/* --------------------------------------------------------------- Error messages */
+.errorExplanation {
+width: 500px;
+color: red;	
+}
+
+.errorExplanation h2 {
+width: 500px;
+color: red;	
+}
+
