@@ -1,6 +1,4 @@
-# We expect $1 to be the username we execute as.
-cd /var/rails/oppnabibliotek
-export HOME=/home/$1
-export USER=$1
-source "/home/$1/.rvm/scripts/rvm"
-ruby script/ferret_server run -e production -R /var/rails/oppnabibliotek
+# We expect to already be in the correct directory
+# cd /var/rails/oppnabibliotek
+
+ruby script/ferret_server run -e production -R $PWD
