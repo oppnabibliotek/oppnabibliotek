@@ -4,8 +4,15 @@ source 'http://rubygems.org'
 # We are nailing one specific version here
 gem 'rails', '3.0.9'
 
+# jQuery support 
+gem 'jquery-rails', '>= 1.0.12'
+
+# Obviously rake 0.9.0 doesn't work
+gem "rake", "!= 0.9.0"
+
 # See http://j-k.lighthouseapp.com/projects/45560/tickets/177-ruby-192-undefined-method-reveal-for-actsasferretsearchresultsclass
-gem 'acts_as_ferret', '= 0.5.2', :git => "git://github.com/primerano/acts_as_ferret.git"
+#gem 'acts_as_ferret', '= 0.5.2', :git => "git://github.com/primerano/acts_as_ferret.git"
+gem 'acts_as_ferret', '>= 0.5'
 
 # Can not go higher unless we somehow get ActiveRecord separately.
 gem 'mysql2', '< 0.3'
@@ -14,7 +21,7 @@ gem 'mysql2', '< 0.3'
 gem 'kaminari'
 
 # Legacy support for Prototype stuff - observe_field etc
-gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
+#gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
 
 # SSL requirements can be expressed in route.rb these days, but
 # this gem maintains the old style of doing it in the controllers.
@@ -32,7 +39,11 @@ end
 # Using Rack::Test for simple unit testing of the REST api.
 gem 'rack-test'
 
+# Oink - for memory usage logging https://github.com/noahd1/oink
+gem 'oink'
 
+# Fast xs - speeding up xml building?
+gem 'fast_xs'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
