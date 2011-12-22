@@ -5,7 +5,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.9'
 
 # jQuery support 
-gem 'jquery-rails', '>= 1.0.12'
+# No, we roll back to prototype using the prototype_legacy_helper plugin
+#gem 'jquery-rails', '>= 1.0.12'
 
 # Obviously rake 0.9.0 doesn't work
 gem "rake", "!= 0.9.0"
@@ -21,6 +22,7 @@ gem 'mysql2', '< 0.3'
 gem 'kaminari'
 
 # Legacy support for Prototype stuff - observe_field etc
+# We installed this as a plugin instead. not sure why
 #gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
 
 # SSL requirements can be expressed in route.rb these days, but
