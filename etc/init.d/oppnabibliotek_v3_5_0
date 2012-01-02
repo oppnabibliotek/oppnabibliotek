@@ -2,21 +2,25 @@
 
 ### BEGIN INIT INFO
 # Provides:          oppnabibliotek
-# Required-Start:    $remote_fs
-# Required-Stop:     $remote_fs
+# Required-Start:    $apache2
+# Required-Stop:     $apache2
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: oppnabibliotek
-# Description:       Ferret indexing for the rails application oppnabibliotek.
+# Description:       Mainly ferret indexing for the rails application.
 ### END INIT INFO
 
 . /lib/lsb/init-functions
 
+. /etc/profile
+
 # The name of this script should match the rails directory name /var/rails/xxx
-RAILS=`basename $0`
+# The next line is equivalent to RAILS=`basename $0` but works for links
+RAILS="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 
 [ -f /etc/default/rcS ] && . /etc/default/rcS
-PATH=/bin:/usr/bin:/sbin:/usr/sbin
+# Just making sure with all paths added
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 DAEMON=/var/rails/$RAILS/run_ferret_in_production
 DESC="oppnabibliotek ferret indexer $DAEMON"
 NAME="oppnabibliotek"
