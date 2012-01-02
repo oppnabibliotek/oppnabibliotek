@@ -1,0 +1,56 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          oppnabibliotek
+# Required-Start:    $remote_fs
+# Required-Stop:     $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: oppnabibliotek
+# Description:       Ferret indexing for the rails application oppnabibliotek.
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+# The name of this script should match the rails directory name /var/rails/xxx
+RAILS=`basename $0`
+
+[ -f /etc/default/rcS ] && . /etc/default/rcS
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+DAEMON=/var/rails/$RAILS/run_ferret_in_production
+DESC="oppnabibliotek ferret indexer $DAEMON"
+NAME="oppnabibliotek"
+PIDFILE=/var/run/$RAILS.pid
+
+test -x $DAEMON || exit 0
+
+case "$1" in
+  start)
+	log_daemon_msg "Starting $DESC" "$NAME"
+	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec "$DAEMON"
+	log_end_msg $?
+	;;
+  stop)
+	log_daemon_msg "Stopping $DESC" "$NAME"
+	if start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE; then
+		rm -f $PIDFILE
+		log_end_msg 0
+        else
+		log_end_msg 1
+        fi
+	;;
+  restart)
+  	$0 stop
+	sleep 3
+	$0 start
+	;;
+  status)
+	status_of_proc -p $PIDFILE "$DAEMON" "$NAME" && exit 0 || exit $?
+	;;
+  *)
+	log_success_msg "Usage: /etc/init.d/oppnabibliotek {start|stop|restart|status}"
+	exit 1
+	;;
+esac
+
+exit 0

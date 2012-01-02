@@ -1,4 +1,15 @@
-# We expect to already be in the correct directory
-# cd /var/rails/oppnabibliotek
+#!/bin/bash
+#
+# A script that starts ferret
 
-ruby script/ferret_server run -e production -R $PWD
+# This oneliner gets path of the directory where this script is located
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd $DIR
+
+# THis gets name of the directory
+RAILS=${PWD##*/}
+
+# Start ferret
+ruby script/ferret_server run -e production -R $DIR &
+echo $! > /var/run/$RAILS.pid
