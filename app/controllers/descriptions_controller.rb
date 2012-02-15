@@ -175,7 +175,7 @@ class DescriptionsController < ApplicationController
         @descriptions = Description.where(params[:description]).limit(params[:limit]).order(params[:order]).offset(params[:offset]).all
       else
         edition = Edition.find(params[:edition_id])
-        if edition.nil
+        if edition
           @descriptions = edition.descriptions
         else
           raise "Couldn't find edition"
