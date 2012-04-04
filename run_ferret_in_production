@@ -2,6 +2,11 @@
 #
 # A script that starts ferret
 
+# Increase open file descriptors limit
+ulimit -n 32000
+date >> /tmp/ferret.ulimit.a.latest
+ulimit -a >> /tmp/ferret.ulimit.a.latest
+
 # This oneliner gets path of the directory where this script is located
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
