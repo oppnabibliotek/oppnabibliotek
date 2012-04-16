@@ -53,7 +53,7 @@ xml.books(:type => 'array') do
                             xml.dynamicinfolink(description.user.dynamicinfolink) if description.user
                             xml.created_at(description.created_at)
                             xml.updated_at(description.updated_at)
-                            xml.library_id(description.user.library.id) if description.user
+                            xml.library_id(description.user.library.id) if description.user && description.user.library
                             xml.library(description.user.library.name) if description.user && description.user.library
                             xml.libraryinfolink(description.user.library.infolink)  if description.user && description.user.library
                             xml.userinfolink(description.user.library.userinfolink) if description.user && description.user.library
